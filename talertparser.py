@@ -5,8 +5,9 @@ from datetime import datetime,time,date
 url = 'http://talerts.com/rssfeed/alertsrss.aspx'
 response = urllib.urlopen(url)
 raw_xml = response.read()
+xmlSoup = BeautifulStoneSoup(raw_xml)
 
-#print  BeautifulStoneSoup(raw_xml).pretify()
+print  BeautifulStoneSoup(raw_xml).pretify()
 
 
 def parse_entry(entry):
@@ -47,5 +48,5 @@ def parse_item(item):
 
 def item_block(raw_xml):
 	"""Take xml and generate items"""
-	for item in soup.channel:
+	for item in xmlSoup.item:
 		parse_item(item)
