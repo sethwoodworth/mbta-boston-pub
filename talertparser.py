@@ -4,38 +4,27 @@ from datetime import datetime,date
 import time
 from sqlalchemy import *
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
 
 #database config
 
 engine = create_engine('sqlite:///talerts.sql')
 
-
-#put an IF statement around this, how do I check if talerts.sql exists?
+#Instantiates the db
+#TODO: Make this happen as-needed, not every time
 metadata = MetaData()
 talerts_table = Table('talerts', metadata,
     Column('id', Integer, primary_key=True),
     Column('guid', String),
     Column('title', String),
     Column('content', String),
-    Column('mbta_date', Date),
-    Column('insert_date', Date)
+    Column('mbta_date', DateTime),
+    Column('timestamp', DateTime)
 )
-
 metadata.create_all(engine) 
 
-class Talert(object):
-    def __init__(self, guid, title, content, mbta_date, insert_date):
-        self.guid = guid
-        self.title = title
-        self.content = content
-        self.mbta_date = mbta_date
-        self.insert_date = insert_date
-
-    def __repr__(self):
-        return "<Talert('%s','%s','%s','%s','%s')>" % (self.guid, self.title, self.content, self.mbta_date, self.insert_date)
-
-
+#sets up future db interactions 
 Base = declarative_base()
 
 class Talert(Base):
@@ -48,16 +37,21 @@ class Talert(Base):
 	mbta_date = Column(DateTime)
 	timestamp = Column(DateTime)
 
-	def __init__(self, guid, title, content, mbta_date, insert_date):
+	def __init__(self, guid, title, content, mbta_date, timestamp):
 		self.guid = guid
 		self.title = title
 		self.content = content
 		self.mbta_date = mbta_date
-		self.timetamp = insert_date
+		self.timestamp = timestamp
 
 	def __repr__(self):
-		return "<Talert('%s','%s')>" % (self.guid, self.title)
+		return "<Talert('%s','%s','%s','%s','%s')>" % (self.guid, self.title, self.content, self.mbta_date, self.timestamp)
+		
 
+Session = sessionmaker(bind=engine)
+session = Session()
+
+ta1 = Talert('guid1234','title4321','somecontent','200911040000','200911040001')
 
 
 #setup the feed for Soup
