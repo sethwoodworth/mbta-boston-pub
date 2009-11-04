@@ -1,6 +1,7 @@
 from BeautifulSoup import BeautifulStoneSoup
 import urllib
-from datetime import datetime,time,date
+from datetime import datetime,date
+import time
 
 url = 'http://talerts.com/rssfeed/alertsrss.aspx'
 response = urllib.urlopen(url)
@@ -17,7 +18,8 @@ def parse_item(item):
 	title = item.find("title").find(text=True)
 	desc = item.find("description").find(text=True)
 	
-	date = datetime.strptime(date_str, '%a, %d %b %Y %H:%M:%S GMT')
+	date_format = datetime.strptime(date_str, '%a, %d %b %Y %H:%M:%S GMT')
+	date = time.mktime(date_format.timetuple())
 
 	return {'guid':guid,
 			'title':title,
