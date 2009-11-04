@@ -2,10 +2,12 @@ from BeautifulSoup import BeautifulStoneSoup
 import urllib
 from datetime import datetime,date
 import time
-import sqlalchemy
+from sqlalchemy import *
+from sqlalchemy.ext.declarative import declarative_base
+
 
 #database config
-engine = create_engine('sqlite:///talerts.sql')
+'''engine = create_engine('sqlite:///talerts.sql')
 
 metadata = MetaData()
 talerts_table = Table('talerts', metadata,
@@ -31,8 +33,33 @@ class Talert(object):
 		return "<Talert('%s','%s','%s','%s','%s')>" % (self.guid, self.title, self.content, self.mbta_date, self.insert_date)
 
 
-mapper(Talert, talerts_table)
+mapper(Talert, talerts_table)'''
 
+Base = declarative_base()
+
+class Talert(Base):
+	__tablename__ = 'talerts'
+
+	id = Column(Integer, primary_key=True)
+	guid = Column(String)
+	title = Column(String)
+	content = Column(String)
+	mbta_date = Column(DateTime)
+	insert_date = Column(DateTime)
+
+	def __init__(self, guid, title, content, mbta_date, insert_date):
+		self.guid = guid
+		self.title = title
+		self.content = content
+		self.mbta_date = mbta_date
+		self.insert_date = insert_date
+
+	def __repr__(self):
+		return "<Talert('%s','%s','%s','%s','%s')>" % (self.guid, self.title, self.content, self.mbta_date, self.insert_date)
+
+
+
+#setup the feed for Soup
 url = 'http://talerts.com/rssfeed/alertsrss.aspx'
 response = urllib.urlopen(url)
 raw_xml = response.read()
