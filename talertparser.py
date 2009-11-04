@@ -7,10 +7,11 @@ from sqlalchemy.ext.declarative import declarative_base
 
 
 #database config
+
 engine = create_engine('sqlite:///talerts.sql')
 
-'''engine = create_engine('sqlite:///talerts.sql')
 
+#put an IF statement around this, how do I check if talerts.sql exists?
 metadata = MetaData()
 talerts_table = Table('talerts', metadata,
     Column('id', Integer, primary_key=True),
@@ -33,9 +34,6 @@ class Talert(object):
 
     def __repr__(self):
         return "<Talert('%s','%s','%s','%s','%s')>" % (self.guid, self.title, self.content, self.mbta_date, self.insert_date)
-
-
-mapper(Talert, talerts_table)'''
 
 
 Base = declarative_base()
@@ -93,4 +91,4 @@ def item_block(soup):
 		print parse_item(ch)
 
 
-item_block(xmlSoup)
+#item_block(xmlSoup)
