@@ -7,33 +7,9 @@ from sqlalchemy.ext.declarative import declarative_base
 
 
 #database config
-'''engine = create_engine('sqlite:///talerts.sql')
+engine = create_engine('sqlite:///talerts.sql')
 
-metadata = MetaData()
-talerts_table = Table('talerts', metadata,
-	Column('id', Integer, primary_key=True),
-	Column('guid', String),
-	Column('title', String),
-	Column('content', String),
-	Column('mbta_date', Date),
-	Column('insert_date', Date)
-)
-
-metadata.create_all(engine) 
-
-class Talert(object):
-	def __init__(self, guid, title, content, mbta_date, insert_date):
-		self.guid = guid
-		self.title = title
-		self.content = content
-		self.mbta_date = mbta_date
-		self.insert_date = insert_date
-
-	def __repr__(self):
-		return "<Talert('%s','%s','%s','%s','%s')>" % (self.guid, self.title, self.content, self.mbta_date, self.insert_date)
-
-
-mapper(Talert, talerts_table)'''
+#mapper(Talert, talerts_table)
 
 Base = declarative_base()
 
@@ -45,17 +21,17 @@ class Talert(Base):
 	title = Column(String)
 	content = Column(String)
 	mbta_date = Column(DateTime)
-	insert_date = Column(DateTime)
+	timestamp = Column(DateTime)
 
 	def __init__(self, guid, title, content, mbta_date, insert_date):
 		self.guid = guid
 		self.title = title
 		self.content = content
 		self.mbta_date = mbta_date
-		self.insert_date = insert_date
+		self.timetamp = insert_date
 
 	def __repr__(self):
-		return "<Talert('%s','%s','%s','%s','%s')>" % (self.guid, self.title, self.content, self.mbta_date, self.insert_date)
+		return "<Talert('%s','%s')>" % (self.guid, self.title)
 
 
 
