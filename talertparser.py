@@ -7,8 +7,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 
-#database config
 
+#database config
 engine = create_engine('sqlite:///talerts.sql')
 
 #Instantiates the db
@@ -23,7 +23,7 @@ talerts_table = Table('talerts', metadata,
     Column('timestamp', DateTime)
 )
 metadata.create_all(engine) 
-
+ 
 #sets up future db interactions 
 Base = declarative_base()
 
@@ -72,11 +72,13 @@ def parse_item(item):
 	
 	date_format = datetime.strptime(date_str, '%a, %d %b %Y %H:%M:%S GMT')
 	date = time.mktime(date_format.timetuple())
+	cur_time = time.time()
 
 	return {'guid':guid,
 			'title':title,
 			'content':content,
-			'date':date
+			'date':date,
+			'cur_time':cur_time
 			}
 
 def item_block(soup):
@@ -85,4 +87,4 @@ def item_block(soup):
 		print parse_item(ch)
 
 
-#item_block(xmlSoup)
+item_block(xmlSoup)
