@@ -3,6 +3,8 @@ import urllib
 
 
 url = 'http://talerts.com/rssfeed/alertsrss.aspx'
-
 response = urllib.urlopen(url)
-xml = response.read()
+raw_xml = response.read()
+
+print  BeautifulStoneSoup(raw_xml).pretify()
+
