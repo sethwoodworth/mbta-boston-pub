@@ -7,28 +7,7 @@ response = urllib.urlopen(url)
 raw_xml = response.read()
 xmlSoup = BeautifulStoneSoup(raw_xml)
 
-print  BeautifulStoneSoup(raw_xml).pretify()
-
-
-def parse_entry(entry):
-    """Should return: posted date, author, content, permalink, entryid"""
-    entryid = entry.get("id")
-    permalink = entry.find("a",{"class":"permalink"}).get("href")
-    byline = entry.find("span",{"class":"byline"})
-    author = byline.find("a").string
-    byline_str = str(byline)
-    date_str = byline_str[byline_str.find("</a>,")+6 : byline_str.find("M\n")+1].replace("  "," ")
-
-    date = datetime.strptime(date_str, '%B %d, %Y %I:%M %p')
-
-    content = str(entry.find("div",{"class":"entry-body"}))
-
-    return {'author':author,
-            'date':date,
-            'entryid':entryid,
-            'permalink':permalink,
-            'content':content
-            }
+#print  xmlSoup.prettify()
 
 
 def parse_item(item):
@@ -38,15 +17,19 @@ def parse_item(item):
 	title = item.get("title")
 	desc = item.get("description")
 	
-	date = datetime.strptime(date_str, '%a, %d %b %Y %H:%M:%S GMT')
+#	date = datetime.strptime(date_str, '%a, %d %b %Y %H:%M:%S GMT')
 
 	return {'guid':guid,
 			'title':title,
 			'desc':desc,
-			'date':date
+			'date':date_str
 			}
 
-def item_block(raw_xml):
+def item_block(soup):
 	"""Take xml and generate items"""
-	for item in xmlSoup.item:
-		parse_item(item)
+	for ch in soup.channel:
+		print ch
+		print parse_item(ch.item)
+
+
+item_block(xmlSoup)
