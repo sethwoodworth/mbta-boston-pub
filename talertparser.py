@@ -12,23 +12,23 @@ xmlSoup = BeautifulStoneSoup(raw_xml)
 
 def parse_item(item):
 	"""Return the elements of the items"""
-	guid = item.get("guid")
-	date_str = item.get("pubdate")
-	title = item.get("title")
-	desc = item.get("description")
+	guid = item.find("guid").find(text=True)
+	date_str = item.find("pubdate").find(text=True)
+	title = item.find("title").find(text=True)
+	desc = item.find("description").find(text=True)
 	
-#	date = datetime.strptime(date_str, '%a, %d %b %Y %H:%M:%S GMT')
+	date = datetime.strptime(date_str, '%a, %d %b %Y %H:%M:%S GMT')
 
 	return {'guid':guid,
 			'title':title,
 			'desc':desc,
-			'date':date_str
+			'date':date
 			}
 
 def item_block(soup):
 	"""Take xml and generate items"""
 	for ch in soup.findAll('item'):
-		print ch.find('guid')
+		print parse_item(ch)
 
 
 item_block(xmlSoup)
