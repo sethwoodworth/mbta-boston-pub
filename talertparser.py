@@ -27,9 +27,8 @@ def parse_item(item):
 
 def item_block(soup):
 	"""Take xml and generate items"""
-	for ch in soup.channel:
-		print ch
-		print parse_item(ch.item)
+	for ch in soup.findAll('item'):
+		print ch.find('guid')
 
 
 item_block(xmlSoup)
