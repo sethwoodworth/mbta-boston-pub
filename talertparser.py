@@ -1,5 +1,7 @@
 from BeautifulSoup import BeautifulStoneSoup
 import urllib
+import urllib2
+import re
 from datetime import datetime,date
 import time
 from sqlalchemy import *
@@ -15,7 +17,7 @@ engine = create_engine('sqlite:///talerts.sql')
 metadata = MetaData()
 talerts_table = Table('talerts', metadata,
     Column('id', Integer, primary_key=True),
-    Column('guid', String),
+    Column('guid', Integer, unique=True),
     Column('title', String),
     Column('content', String),
     Column('mbta_date', DateTime),
@@ -30,7 +32,7 @@ class Talert(Base):
     __tablename__ = 'talerts'
 
     id = Column(Integer, primary_key=True)
-    guid = Column(String)
+    guid = Column(Integer, unique=True)
     title = Column(String)
     content = Column(String)
     mbta_date = Column(DateTime)
@@ -68,7 +70,7 @@ xmlSoup = BeautifulStoneSoup(raw_xml)
 
 def parse_item(item):
     #Return the elements of the items
-    guid = item.find("guid").find(text=True)
+    guid = int(re.sub('talerts','',item.find("guid").find(text=True)))
     date_raw = item.find("pubdate").find(text=True)
     title = item.find("title").find(text=True)
     content = item.find("description").find(text=True)
