@@ -1,467 +1,0 @@
-w<?xml version='1.0' encoding='utf-8'?>
-<rss version="2.0">
- <channel>
-  <title>
-   T-Alerts
-  </title>
-  <link>
-   http://www.mbta.com/rider_tools/transit_updates/
-  </link>
-  <description>
-   Recent MBTA T-Alerts
-  </description>
-  <language>
-   en-us
-  </language>
-  <generator>
-   eAlert Messaging System  http://www.ealet.com
-  </generator>
-  <webmaster>
-   hostmaster@mis-sciences.com
-  </webmaster>
-  <ttl>
-   15
-  </ttl>
-
-
-
-  <item>
-   <title>
-    66   Harvard Square - Dudley Station via Harvard St.
-   </title>
-   <link>
-    http://www.mbta.com/rider_tools/transit_updates/
-   </link>
-   <description>
-    Route 66 is experiencing 15-20 minute delays due to a disabled bus.
- 11/3/2009 9:01 PM
-   </description>
-   <pubdate>
-    Wed, 04 Nov 2009 02:02:14 GMT
-   </pubdate>
-   <guid ispermalink="false">
-    talerts628476184868082
-   </guid>
-  </item>
-
-
-
-  <item>
-   <title>
-    South Station Transitway (419) Silver Line inbound to lobby
-   </title>
-   <link>
-    http://www.mbta.com/rider_tools/transit_updates/
-   </link>
-   <description>
-    Escalator: South Station Transitway (419) Silver Line inbound to lobby is out of service
-   </description>
-   <pubdate>
-    Wed, 04 Nov 2009 00:37:21 GMT
-   </pubdate>
-   <guid ispermalink="false">
-    talerts628416184268076
-   </guid>
-  </item>
-
-  <item>
-   <title>
-    South Station (918) - southbound platform to Silver Line lobby.
-   </title>
-   <link>
-    http://www.mbta.com/rider_tools/transit_updates/
-   </link>
-   <description>
-    Elevator: South Station (918) - southbound platform to Silver Line lobby. is out of service
-   </description>
-   <pubdate>
-    Tue, 03 Nov 2009 21:12:12 GMT
-   </pubdate>
-   <guid ispermalink="false">
-    talerts628296183068064
-   </guid>
-  </item>
-
-  <item>
-   <title>
-    15   Kane Sq. or Fields Corner Sta. - Ruggles Sta.
-   </title>
-   <link>
-    http://www.mbta.com/rider_tools/transit_updates/
-   </link>
-   <description>
-    Diversion on the Routes 15, 17, 18, 19, 201/202, and 210 
- Fields Corner Station Busway will be closed for paving work beginning late Wednesday evening, November 4th, and continuing through the mid-afternoon on Thursday, November 5th. 
- Routes 15, 17, 19 
- Connections can be made on Geneva Avenue outside the station 
- Routes 18, 201/202, 210 
- Connections can be made on Dorchester Avenue outside the station 
- 11/3/2009 4:06 PM
-   </description>
-   <pubdate>
-    Tue, 03 Nov 2009 21:07:57 GMT
-   </pubdate>
-   <guid ispermalink="false">
-    talerts628286182968057
-   </guid>
-  </item>
-  <item>
-   <title>
-    17   Fields Corner Station - Andrew Station via Kane Square
-   </title>
-   <link>
-    http://www.mbta.com/rider_tools/transit_updates/
-   </link>
-   <description>
-    Diversion on the Routes 15, 17, 18, 19, 201/202, and 210 
- Fields Corner Station Busway will be closed for paving work beginning late Wednesday evening, November 4th, and continuing through the mid-afternoon on Thursday, November 5th. 
- Routes 15, 17, 19 
- Connections can be made on Geneva Avenue outside the station 
- Routes 18, 201/202, 210 
- Connections can be made on Dorchester Avenue outside the station 
- 11/3/2009 4:06 PM
-   </description>
-   <pubdate>
-    Tue, 03 Nov 2009 21:07:57 GMT
-   </pubdate>
-   <guid ispermalink="false">
-    talerts628286182968058
-   </guid>
-  </item>
-  <item>
-   <title>
-    18   Ashmont Station - Andrew Station via Dorchester Ave.
-   </title>
-   <link>
-    http://www.mbta.com/rider_tools/transit_updates/
-   </link>
-   <description>
-    Diversion on the Routes 15, 17, 18, 19, 201/202, and 210 
- Fields Corner Station Busway will be closed for paving work beginning late Wednesday evening, November 4th, and continuing through the mid-afternoon on Thursday, November 5th. 
- Routes 15, 17, 19 
- Connections can be made on Geneva Avenue outside the station 
- Routes 18, 201/202, 210 
- Connections can be made on Dorchester Avenue outside the station 
- 11/3/2009 4:06 PM
-   </description>
-   <pubdate>
-    Tue, 03 Nov 2009 21:07:57 GMT
-   </pubdate>
-   <guid ispermalink="false">
-    talerts628286182968059
-   </guid>
-  </item>
-  <item>
-   <title>
-    19   Fields Corner Sta. - Kenmore or Ruggles Sta. via Grove Hall and Dudley Station
-   </title>
-   <link>
-    http://www.mbta.com/rider_tools/transit_updates/
-   </link>
-   <description>
-    Diversion on the Routes 15, 17, 18, 19, 201/202, and 210 
- Fields Corner Station Busway will be closed for paving work beginning late Wednesday evening, November 4th, and continuing through the mid-afternoon on Thursday, November 5th. 
- Routes 15, 17, 19 
- Connections can be made on Geneva Avenue outside the station 
- Routes 18, 201/202, 210 
- Connections can be made on Dorchester Avenue outside the station 
- 11/3/2009 4:06 PM
-   </description>
-   <pubdate>
-    Tue, 03 Nov 2009 21:07:57 GMT
-   </pubdate>
-   <guid ispermalink="false">
-    talerts628286182968060
-   </guid>
-  </item>
-  <item>
-   <title>
-    201  Fields Corner or No. Quincy Station - Fields Corner via Neponset Ave. to Adams St.
-   </title>
-   <link>
-    http://www.mbta.com/rider_tools/transit_updates/
-   </link>
-   <description>
-    Diversion on the Routes 15, 17, 18, 19, 201/202, and 210 
- Fields Corner Station Busway will be closed for paving work beginning late Wednesday evening, November 4th, and continuing through the mid-afternoon on Thursday, November 5th. 
- Routes 15, 17, 19 
- Connections can be made on Geneva Avenue outside the station 
- Routes 18, 201/202, 210 
- Connections can be made on Dorchester Avenue outside the station 
- 11/3/2009 4:06 PM
-   </description>
-   <pubdate>
-    Tue, 03 Nov 2009 21:07:57 GMT
-   </pubdate>
-   <guid ispermalink="false">
-    talerts628286182968061
-   </guid>
-  </item>
-  <item>
-   <title>
-    202  Fields Corner or No. Quincy Station - Fields Corner via Adams St. to Neponset Ave.
-   </title>
-   <link>
-    http://www.mbta.com/rider_tools/transit_updates/
-   </link>
-   <description>
-    Diversion on the Routes 15, 17, 18, 19, 201/202, and 210 
- Fields Corner Station Busway will be closed for paving work beginning late Wednesday evening, November 4th, and continuing through the mid-afternoon on Thursday, November 5th. 
- Routes 15, 17, 19 
- Connections can be made on Geneva Avenue outside the station 
- Routes 18, 201/202, 210 
- Connections can be made on Dorchester Avenue outside the station 
- 11/3/2009 4:06 PM
-   </description>
-   <pubdate>
-    Tue, 03 Nov 2009 21:07:57 GMT
-   </pubdate>
-   <guid ispermalink="false">
-    talerts628286182968062
-   </guid>
-  </item>
-  <item>
-   <title>
-    210  Quincy Center Sta. - No. Quincy Sta. or Fields Corner Station
-   </title>
-   <link>
-    http://www.mbta.com/rider_tools/transit_updates/
-   </link>
-   <description>
-    Diversion on the Routes 15, 17, 18, 19, 201/202, and 210 
- Fields Corner Station Busway will be closed for paving work beginning late Wednesday evening, November 4th, and continuing through the mid-afternoon on Thursday, November 5th. 
- Routes 15, 17, 19 
- Connections can be made on Geneva Avenue outside the station 
- Routes 18, 201/202, 210 
- Connections can be made on Dorchester Avenue outside the station 
- 11/3/2009 4:06 PM
-   </description>
-   <pubdate>
-    Tue, 03 Nov 2009 21:07:57 GMT
-   </pubdate>
-   <guid ispermalink="false">
-    talerts628286182968063
-   </guid>
-  </item>
-  <item>
-   <title>
-    Oak Grove (104) busway to unpaid lobby
-   </title>
-   <link>
-    http://www.mbta.com/rider_tools/transit_updates/
-   </link>
-   <description>
-    Escalator: Oak Grove (104) busway to unpaid lobby is out of service
-   </description>
-   <pubdate>
-    Mon, 02 Nov 2009 21:24:09 GMT
-   </pubdate>
-   <guid ispermalink="false">
-    talerts627486174967971
-   </guid>
-  </item>
-  <item>
-   <title>
-    Alewife (814) 1 of 2, lobby to parking garage
-   </title>
-   <link>
-    http://www.mbta.com/rider_tools/transit_updates/
-   </link>
-   <description>
-    Elevator: Alewife (814) 1 of 2, lobby to parking garage is out of service. Elevator (815) at the same location is operating normally and customers may use it for service to the parking garage.
-   </description>
-   <pubdate>
-    Thu, 29 Oct 2009 10:18:07 GMT
-   </pubdate>
-   <guid ispermalink="false">
-    talerts623506135167560
-   </guid>
-  </item>
-  <item>
-   <title>
-    Blue Line
-   </title>
-   <link>
-    http://www.mbta.com/rider_tools/transit_updates/
-   </link>
-   <description>
-    Saturday Bus Replacement Service Wood Island to Airport Station: On Saturday, November 14th.  Wood Island Station will be closed for renovations and replacement shuttle bus service will be provided between Airport and Wood Island Stations. MBTA personnel will be available at both stations to direct customers to the bus replacement service. /2009 9:16 PM
-   </description>
-   <pubdate>
-    Thu, 29 Oct 2009 01:20:39 GMT
-   </pubdate>
-   <guid ispermalink="false">
-    talerts623406134167550
-   </guid>
-  </item>
-  <item>
-   <title>
-    Blue Line
-   </title>
-   <link>
-    http://www.mbta.com/rider_tools/transit_updates/
-   </link>
-   <description>
-    Weekend Bus Replacement Service Wonderland to Revere Beach Stations: On Saturday, November 7th and Sunday November 8th, 2009.  Wonderland Station will be closed for renovations and replacement shuttle bus service will be provided between Wonderland and Revere Beach Stations. MBTA personnel will be available at both stations to direct customers to the bus replacement service.  10/28/2009 9:09 PM
-   </description>
-   <pubdate>
-    Thu, 29 Oct 2009 01:15:59 GMT
-   </pubdate>
-   <guid ispermalink="false">
-    talerts623396134067549
-   </guid>
-  </item>
-  <item>
-   <title>
-    Middleborough/Lakeville
-   </title>
-   <link>
-    http://www.mbta.com/rider_tools/transit_updates/
-   </link>
-   <description>
-    Middleborough/Lakeville Line 
- Necessary Track Work ~ Busing 
- Wednesday September 16th through Friday October 30th 
- Weekdays 
- 
- Beginning Monday November 1st continuing through Friday November 6th, 2009 the track between Bridgewater and Middleborough will be removed from service for necessary track work between 8:30 AM and 4:00 PM Mondays through Fridays. 
- 
- This necessary track work will require busing between Bridgewater and Middleborough. It is anticipated the trains listed below may experience delays of up to 10 minutes. 
- 
- Inbound passengers on the following trains will be bused from Middleborough to Bridgewater: 
- 
- 012 (Dep Middleborough at 9:38 AM) ~ Bus departs for Bridgewater at 9:18 AM 
- 014 (Dep Middleborough at 11:10 AM) ~ Bus departs for Bridgewater at 10:50 AM 
- 016 Dep Middleborough at 1:08 PM) ~ Bus departs for Bridgewater at 12:48 PM 
- 018 (Dep Middleborough at 3:25 PM) ~ Bus departs for Bridgewater at 3:05 PM 
- 
- In order to keep the above trains on or near schedule it will be necessary for the shuttle buses to depart from Middleborough station at the designated times which are 20 minutes prior to the usual scheduled departures of the trains from the station. 
- 
- Outbound passengers on the following trains will be bused from Bridgewater to Middleborough: 
- 
- 005 (Dep South Station 8:24 AM) 
- 007 (Dep South Station: 9:57 AM) 
- 009 (Dep South Station: 11:57 PM) 
- 015 (Dep South Station 2:10 PM) 
- 
- As the project progresses minor delays may occur to all trains. 
- 
- We apologize for any inconvenience that may be experienced because of this essential track work.
-   </description>
-   <pubdate>
-    Wed, 28 Oct 2009 14:41:50 GMT
-   </pubdate>
-   <guid ispermalink="false">
-    talerts622796128067465
-   </guid>
-  </item>
-  <item>
-   <title>
-    Braintree (335) 1 of 2, lobby to platform
-   </title>
-   <link>
-    http://www.mbta.com/rider_tools/transit_updates/
-   </link>
-   <description>
-    Escalator: Braintree (335) 1 of 2, lobby to platform is out of service
-   </description>
-   <pubdate>
-    Tue, 27 Oct 2009 13:07:29 GMT
-   </pubdate>
-   <guid ispermalink="false">
-    talerts621746117567348
-   </guid>
-  </item>
-  <item>
-   <title>
-    67   Turkey Hill - Alewife Station
-   </title>
-   <link>
-    http://www.mbta.com/rider_tools/transit_updates/
-   </link>
-   <description>
-    Diversion on the Route 67 (Phase 2)
- September 8, 2009 and continuing for approximately 2 months.
- The diversion route will travel via Summer St. and Overlook Rd. Part of Washington St. will be omitted. 
- A temporary service stop will be established on Overlook Rd. at Washington St.
- 9/8/2009 2:08 PM
-   </description>
-   <pubdate>
-    Tue, 08 Sep 2009 18:13:45 GMT
-   </pubdate>
-   <guid ispermalink="false">
-    talerts579355693662378
-   </guid>
-  </item>
-  <item>
-   <title>
-    New England Medical Center (857) lobby to Washington Street
-   </title>
-   <link>
-    http://www.mbta.com/rider_tools/transit_updates/
-   </link>
-   <description>
-    The Elevators at New England Medical Center are out of service due to an earlier power failure. Personnel are working to restart the elevators. Please use Silver Line service to and from Chinatown Station for service to and from New England Medical Center Station.
-   </description>
-   <pubdate>
-    Sun, 23 Aug 2009 00:44:23 GMT
-   </pubdate>
-   <guid ispermalink="false">
-    talerts566875568861079
-   </guid>
-  </item>
-  <item>
-   <title>
-    New England Medical Center (857) lobby to Washington Street
-   </title>
-   <link>
-    http://www.mbta.com/rider_tools/transit_updates/
-   </link>
-   <description>
-    Elevator: The Elevators at New England Medical Center are out of service due to an earlier power failure.  Personnel are en route to restart the elevators. Please use Silver Line service to and from Chinatown Station for service to and from New England Medical Center Station.
-   </description>
-   <pubdate>
-    Sat, 22 Aug 2009 20:47:29 GMT
-   </pubdate>
-   <guid ispermalink="false">
-    talerts566635566461053
-   </guid>
-  </item>
-  <item>
-   <title>
-    Park Street (804) lobby to Tremont Street
-   </title>
-   <link>
-    http://www.mbta.com/rider_tools/transit_updates/
-   </link>
-   <description>
-    Elevator #804 at Park Street from street level to lobby is out of service.
-Passengers requiring elevator service at Park Street Station must utilize the elevator at DTX-ing located at the end of the concourse.
-We apologize for the inconvenience.
-   </description>
-   <pubdate>
-    Sun, 26 Jul 2009 18:46:29 GMT
-   </pubdate>
-   <guid ispermalink="false">
-    talerts540795308058227
-   </guid>
-  </item>
-  <item>
-   <title>
-    Copley (314) outbound platform to Boylston Street
-   </title>
-   <link>
-    http://www.mbta.com/rider_tools/transit_updates/
-   </link>
-   <description>
-    Copley Station: due to ongoing station construction the escalator at Copley Station is out of service. We apologize for the inconvenience.
-   </description>
-   <pubdate>
-    Thu, 25 Jun 2009 13:12:34 GMT
-   </pubdate>
-   <guid ispermalink="false">
-    talerts523325133356335
-   </guid>
-  </item>
- </channel>
-</rss>
