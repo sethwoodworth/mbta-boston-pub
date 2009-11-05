@@ -4,8 +4,7 @@ from datetime import datetime,date
 import time
 from sqlalchemy import *
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
-
+from sqlalchemy.orm import sessionmaker, mapper
 
 
 #database config
@@ -28,30 +27,34 @@ metadata.create_all(engine)
 Base = declarative_base()
 
 class Talert(Base):
-	__tablename__ = 'talerts'
+    __tablename__ = 'talerts'
 
-	id = Column(Integer, primary_key=True)
-	guid = Column(String)
-	title = Column(String)
-	content = Column(String)
-	mbta_date = Column(DateTime)
-	timestamp = Column(DateTime)
+    id = Column(Integer, primary_key=True)
+    guid = Column(String)
+    title = Column(String)
+    content = Column(String)
+    mbta_date = Column(DateTime)
+    timestamp = Column(DateTime)
 
-	def __init__(self, guid, title, content, mbta_date, timestamp):
-		self.guid = guid
-		self.title = title
-		self.content = content
-		self.mbta_date = mbta_date
-		self.timestamp = timestamp
+    def __init__(self, guid, title, content, mbta_date, timestamp):
+        self.guid = guid
+        self.title = title
+        self.content = content
+        self.mbta_date = mbta_date
+        self.timestamp = timestamp
 
-	def __repr__(self):
-		return "<Talert('%s','%s','%s','%s','%s')>" % (self.guid, self.title, self.content, self.mbta_date, self.timestamp)
-		
+    def __repr__(self):
+        return "<Talert('%s','%s','%s','%s','%s')>" % (self.guid, self.title, self.content, self.mbta_date, self.timestamp)
+
+    def guid(self):
+        return self.guid
+
+
+#mapper(Talert, talerts_table)        
 
 Session = sessionmaker(bind=engine)
 session = Session()
 
-ta1 = Talert('guid1234','title4321','somecontent','200911040000','200911040001')
 
 
 #setup the feed for Soup
@@ -64,27 +67,26 @@ xmlSoup = BeautifulStoneSoup(raw_xml)
 
 
 def parse_item(item):
-	#Return the elements of the items
-	guid = item.find("guid").find(text=True)
-	date_str = item.find("pubdate").find(text=True)
-	title = item.find("title").find(text=True)
-	content = item.find("description").find(text=True)
-	
-	date_format = datetime.strptime(date_str, '%a, %d %b %Y %H:%M:%S GMT')
-	date = time.mktime(date_format.timetuple())
-	cur_time = time.time()
+    #Return the elements of the items
+    guid = item.find("guid").find(text=True)
+    date_raw = item.find("pubdate").find(text=True)
+    title = item.find("title").find(text=True)
+    content = item.find("description").find(text=True)
+    
+    date_str = time.strptime(date_raw, '%a, %d %b %Y %H:%M:%S GMT')
+    date = time.strftime("%Y-%m-%d %H:%M:%S", date_str)
+    cur_time = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
 
-	return {'guid':guid,
-			'title':title,
-			'content':content,
-			'date':date,
-			'cur_time':cur_time
-			}
+    return Talert(guid, title, content, date, cur_time)
+
 
 def item_block(soup):
-	#Take xml and generate items
-	for ch in soup.findAll('item'):
-		print parse_item(ch)
+    #Take xml and generate items
+    for ch in soup.findAll('item'):
+        toAdd = parse_item(ch)
+        session.add(toAdd)
+#        print toAdd.guid()
+    session.flush()
 
 
 item_block(xmlSoup)
