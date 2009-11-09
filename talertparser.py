@@ -39,8 +39,8 @@ class Talert(Base):
     guid = Column(Integer, unique=True)
     title = Column(String)
     content = Column(String)
-    mbta_date = Column(DateTime)
-    timestamp = Column(DateTime)
+    mbta_date = Column(Integer)
+    timestamp = Column(Integer)
 
     def __init__(self, guid, title, content, mbta_date, timestamp):
         self.guid = guid
