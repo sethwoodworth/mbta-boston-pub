@@ -7,6 +7,7 @@ import time
 from sqlalchemy import *
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, mapper
+
 #TODO: don't need urllib and urllib2, find out why both are here
 #TODO: shouldn't need the import * if I declare what I need below
 
@@ -54,11 +55,8 @@ class Talert(Base):
     def guid(self):
         return self.guid
 
-
 Session = sessionmaker(bind=engine)
 session = Session()
-
-
 
 # Setting up the MBTA XML feed, and cleaning it
 print 'Pulling the MBTA feed and making Soup'
@@ -66,9 +64,6 @@ url = 'http://talerts.com/rssfeed/alertsrss.aspx'
 response = urllib.urlopen(url)
 raw_xml = response.read()
 xmlSoup = BeautifulStoneSoup(raw_xml)
-
-#print  xmlSoup.prettify()
-
 
 def parse_item(item):
     # Return the elements of the items
@@ -83,9 +78,9 @@ def parse_item(item):
     date_str = time.strptime(date_raw, '%a, %d %b %Y %H:%M:%S GMT')
     date = time.strftime("%Y-%m-%d %H:%M:%S", date_str)
     cur_time = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
+	#cur_time = datetime.now()
 
     return Talert(guid, title, content, date, cur_time)
-
 
 def item_block(soup):
     # Take xml and generate items to be inserted
@@ -94,7 +89,6 @@ def item_block(soup):
         session.add(toAdd)
         #print toAdd.guid()
     print 'Good, got it, storing now'
-    session.flush()
-
+    session.commit()
 
 item_block(xmlSoup)
