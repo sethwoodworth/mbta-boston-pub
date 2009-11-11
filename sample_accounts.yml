@@ -1,6 +1,5 @@
--
-  username : account1
-  password : drowssap1
--
-  username : account2
-  password : drowssap2
+---
+apple: {account: appletweet, password: applejuice}
+bananna: {account: anna_peel, password: yellow}
+can: {account: juice_can, password: tin_can}
+ducks: {account: tex_with_ducks, password: orangeyaknow}
