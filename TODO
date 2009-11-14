@@ -1,2 +1,8 @@
-Store bool for isCurrent
-	Updates stay in the feed for as long as they are current.  Our DB does not reflect this.
+talertparser.py
+
+	* Store bool for isCurrent
+		Updates stay in the feed for as long as they are current.  Our DB does not reflect this.
+
+tweeter.py
+
+	* use oauth-python-twitter to implement oauth for tweeter.py

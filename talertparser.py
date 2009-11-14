@@ -84,10 +84,9 @@ def parse_item(item):
 
 def item_block(soup):
     # Take xml and generate items to be inserted
-    for ch in soup.findAll('item'):
-        toAdd = parse_item(ch)
-        session.add(toAdd)
-        #print toAdd.guid()
+    for channel in soup.findAll('item'):
+        to_add = parse_item(channel)
+        session.add(to_add)
     print 'Good, got it, storing now'
     session.commit()
 
