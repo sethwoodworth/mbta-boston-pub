@@ -1,30 +1,29 @@
 from BeautifulSoup import BeautifulStoneSoup
 import urllib
 import urllib2
-import re
 from datetime import datetime,date
 import time
 from sqlalchemy import *
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, mapper
+from sqlalchemy.orm import *
+import exceptions
 
 #TODO: shouldn't need the import * if I declare what I need below
 
 # database config
-engine = create_engine('sqlite:///bus_locations.sql')
+engine = create_engine('sqlite:///locations.sql')
 
-# Instantiates the db #
-## TODO: Make this happen as-needed, not every time
-## Actually, .create_all(engine) provides this check for me.  This is just a bit messy.
+# pull metadata if exists
+metadata = MetaData(engine)
 
-metadata = MetaData()
-vehicle = Table('vehicles', metadata,
+# creates the table
+vehicle_table = Table('vehicles', metadata,
     Column('id', Integer, primary_key=True),
     Column('bus_id', Integer), # mbta's 'id'
     Column('routeTag', Text),
     Column('dirTag', Text), # 'in', 'out', and 'null'
     Column('lat', Float),
-    Column('lon', Float),
+    Column('long', Float),
     Column('secsSinceReport', Integer),
     Column('predictable', Boolean),  # can request time to next stop
     Column('heading', Integer),
@@ -32,44 +31,23 @@ vehicle = Table('vehicles', metadata,
     Column('timestamp', DateTime)
 )
 
-metadata.create_all(engine) 
- 
-# DB Class interactions 
-Base = declarative_base()
+try:
+    vehicle_table.create()
+except:
+    print 'TABLE \'vehicle_table\' already exists'
 
-class Vehicle(Base):
-    __tablename__ = 'vehicles'
+# Load defs from db if exists for mapping
+vehicle_table = Table('vehicles', metadata, autoload=True)
 
-    id = Column(Integer, primary_key=True),
-    bus_id = Column(Integer), # mbta's 'id'
-    routeTag = Column(Text),
-    dirTag = Column(Text), # 'in', 'out', and 'null'
-    lat = Column(Float),
-    long = Column(Float),
-    secsSinceReport = Column(Integer),
-    predictable = Column(Boolean),  # can request time to next stop
-    heading = Column(Integer),
-    lastTime = Column(DateTime),
-    timestamp = Column(DateTime)
-
-    def __init__(self, bus_id, routeTag, dirTag, lat, long, secsSincneReport, predictable, heading, lastTime, timestamp):
-
-        self.bus_id = bus_id
-        self.routeTag = routeTag
-        self.dirTag = dirTag
-        self.lat = lat
-        self.long = long
-        self.secsSinceReport = secsSinceReport
-        self.predictable = predictable
-        self.heading = heading
-        self.lastTime = lastTime
-        self.timestamp = timestamp
+# create a holding class
+class Vehicle(object):
 
     def __repr__(self):
-        return "<Vehicle('%s','%s','%s','%s','%s')>" % (self.bus_id, self.routeTag, self.lat, self.long, self.lastTime)
+        return '%s(%r,%r)' % (self.__class__.__name__, self.bus_id, self.routeTag, self.lat, self.long, self.lastTime)
 
-    def bus_id(self):
-        return self.bus_id
+# Map holding class to the table def
+mapper(Vehicle, vehicle_table)
+
 
 Session = sessionmaker(bind=engine)
 session = Session()
