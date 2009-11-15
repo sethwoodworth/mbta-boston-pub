@@ -16,88 +16,77 @@ engine = create_engine('sqlite:///locations.sql')
 # pull metadata if exists
 metadata = MetaData(engine)
 
-# creates the table
-vehicle_table = Table('vehicles', metadata,
-    Column('id', Integer, primary_key=True),
-    Column('bus_id', Integer), # mbta's 'id'
-    Column('routeTag', Text),
-    Column('dirTag', Text), # 'in', 'out', and 'null'
-    Column('lat', Float),
-    Column('long', Float),
-    Column('secsSinceReport', Integer),
-    Column('predictable', Boolean),  # can request time to next stop
-    Column('heading', Integer),
-    Column('lastTime', DateTime),
-    Column('timestamp', DateTime)
-)
-
-try:
-    vehicle_table.create()
-except:
-    print 'TABLE \'vehicle_table\' already exists'
-
-# Load defs from db if exists for mapping
-vehicle_table = Table('vehicles', metadata, autoload=True)
-
-# create a holding class
-class Vehicle(object):
-
-    def __repr__(self):
-        return '%s(%r,%r)' % (self.__class__.__name__, self.bus_id, self.routeTag, self.lat, self.long, self.lastTime)
-
-# Map holding class to the table def
-mapper(Vehicle, vehicle_table)
-
-
 Session = sessionmaker(bind=engine)
 session = Session()
 
 # Grabbing route information
-print 'Pulling the list of NextBus feeds and making Soup'
+print 'Pulling the list of NextBus feeds and making Soup...'
 
 url_pre = 'http://webservices.nextbus.com/service/publicXMLFeed?command=vehicleLocations&a=mbta&r='
 url_post = '&t=0' # is this needed?
-route_number = [39, 111, 114, 116, 117]
-route_dict = {}
+#routeNumber = ['39', '111', '114', '116', '117']
+routeNumber = ['39']
 
-def soup_bus(route):
-    url = url_pre + str(route) + url_post
-    response = urllib.urlopen(url)
-    raw_xml = response.read()
-    return BeautifulStoneSoup(raw_xml)
+Base = declarative_base()
+class Vehicle(Base):
+    __tablename__ = 'vehicleLocations'
 
-def soup_store():
-    for r in route_number:
-        route_dict[r] = soup_bus(r)
-    
-soup_store()
+    # <vehicle id="1039" routeTag="39" dirTag="in" lat="42.3011539" lon="-71.1138792" secsSinceReport="31" predictable="true" heading="281"/>
 
-def parse_location(bus):
-    # parse the attributes of the vehicle tag, store for db insert
-    #bus_id = item.find("id").find(text=True)))
-    #date_raw = item.find("pubdate").find(text=True)
-    #title = item.find("title").find(text=True)
-    #content = item.find("description").find(text=True)
-    
-    # MBTA's date format is odd, convert to Unix time then to ISO standard
-    #date_str = time.strptime(date_raw, '%a, %d %b %Y %H:%M:%S GMT')
-    #date = time.strftime("%Y-%m-%d %H:%M:%S", date_str)
-    #cur_time = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
-	#cur_time = datetime.now()
+    id      = Column(Integer, primary_key=True)
+    vid     = Column("vid", Integer)
+    route   = Column("route", String) # Not all routes are ints (CT1, etc.)
+    dir     = Column("dir", String) # in, out, null
+    lat     = Column("lat", Float)
+    lon     = Column("lon", Float)
+    time    = Column("time", Integer) 
+    # SQLite does not support the datetime object. Store as
+    #   seconds from the epoch.
+    # Also, this doesn't lock us into one poorly written date/time lib.
+    # portability ftw.
+    heading = Column(Integer)
 
-    return bus 
+    def __init__(self, xmlDesc, tm):
+        #vehicle id can be zero padded -- we diregard this
+        print xmlDesc.prettify
+        self.vid    = int(xmlDesc['id'])
+        self.route  = xmlDesc['routetag']
+        self.dir    = xmlDesc['dirtag']
+        self.lat    = float(xmlDesc['lat'])
+        self.lon    = float(xmlDesc['lon'])
+        self.time   = (tm - int(xmlDesc['secssincereport'])) # int not datetime
+        self.heading = int(xmlDesc['heading']) 
 
-def route_to_bus(soup):
+    def __repr__(self):
+        return "<Vehicle('%s','%s','%s','%f','%f','%d','%d')>" % (self.vid, self.route, self.dir, self.lat,self.time,self.heading)
+
+# TODO There's no need for mutation of global variables. 
+#   Rewrite this code in a more abstract and robust manner.
+
+def storeVehicleData(soup, t):
     # Take xml and generate items to be inserted
-    for bus in soup.findAll('vehicle'):
-        to_add = parse_location(bus)
-        session.add(to_add)
+    for v in soup.findAll('vehicle'):
+        session.add(Vehicle(v,t))
     print 'Good, got it, storing now'
     session.commit()
 
-def store_routes():
-    for r in route_number:
-        page = route_dict[r]
-        route_to_bus(page)
+def storeRoutes(rd):
+    for r in rd:
+        # NextBus is inconsistent in their tag usage.
+        lt = rd[r].find('lastTime')
+        if not lt:
+            lt = rd[r].find('lasttime')
+        tm = int(lt['time'])
+        datum = rd[r]
+        storeVehicleData(rd[r], tm)
 
-store_routes()
+def getRoutes():
+    routeDict = {}
+    for r in routeNumber:
+        resp = urllib2.urlopen(url_pre + r + url_post)
+        xm = resp.read()
+        routeDict['r'] = BeautifulStoneSoup(xm)
+    return routeDict
+
+
+storeRoutes(getRoutes())
