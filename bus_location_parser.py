@@ -13,11 +13,28 @@ import exceptions
 # database config
 engine = create_engine('sqlite:///locations.sql')
 
+
 # pull metadata if exists
 metadata = MetaData(engine)
 
 Session = sessionmaker(bind=engine)
 session = Session()
+
+vehicleTable = Table('locations', metadata,
+    Column('id', Integer, primary_key=True),
+    Column('vid', Integer),
+    Column('route', Text),
+    Column('dir', Text),
+    Column('lat', Float),
+    Column('lon', Float),
+    Column('time', Integer),
+    Column('heading', Integer)
+)
+
+try:
+    vehicleTable.create()
+except:
+    print "Table already exists."
 
 # Grabbing route information
 print 'Pulling the list of NextBus feeds and making Soup...'
@@ -29,7 +46,7 @@ routeNumber = ['39']
 
 Base = declarative_base()
 class Vehicle(Base):
-    __tablename__ = 'vehicleLocations'
+    __tablename__ = 'locations'
 
     # <vehicle id="1039" routeTag="39" dirTag="in" lat="42.3011539" lon="-71.1138792" secsSinceReport="31" predictable="true" heading="281"/>
 
@@ -44,7 +61,7 @@ class Vehicle(Base):
     #   seconds from the epoch.
     # Also, this doesn't lock us into one poorly written date/time lib.
     # portability ftw.
-    heading = Column(Integer)
+    heading = Column("heading", Integer)
 
     def __init__(self, xmlDesc, tm):
         #vehicle id can be zero padded -- we diregard this
